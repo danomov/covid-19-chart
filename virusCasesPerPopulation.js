@@ -33,6 +33,10 @@ function handleVirusCasePerPopPercentageChart() {
                 return response.json();
             })
             .then(data => {
+                if (data.length > 1) {
+                    const country = data.filter((el) => el.name.length == countryName.length)
+                    return country[0]
+                }
                 return data[0] ? data[0].population : null;
             })
             .catch(err => {
